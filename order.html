@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Coffee - Coffee Bliss</title>
+  <link rel="stylesheet" href="order.css">
+</head>
+<body>
+  <div class="preview-box">
+  <img id="coffee-image" src="images/gif.gif" alt="Selected item" />
+  <h3 id="coffee-name"></h3>
+</div>
+  <div class="order-wrapper">
+    <div class="order-box">
+      <h2>Order Your Coffee</h2>
+
+      <!-- Show selected item -->
+      <p id="selected-drink"></p>
+      <!-- Drink options (hidden by default) -->
+    <div id="drink-options" style="display: none;">
+  <!-- Size -->
+  <label for="size">Choose size:</label>
+  <select id="size" name="size">
+    <option value="small">Small</option>
+    <option value="medium">Medium</option>
+    <option value="large">Large</option>
+  </select>
+
+  <!-- Milk -->
+  <div id="milk-options" style="display: none; margin-top: 10px;">
+    <label for="milk">Choose milk:</label>
+    <select id="milk" name="milk">
+      <option value="regular">Regular</option>
+      <option value="soy">Soy</option>
+      <option value="almond">Almond</option>
+      <option value="oat">Oat</option>
+    </select>
+  </div>
+</div>
+
+      <!-- Pastry options (hidden by default) -->
+      <div id="pastry-options" style="display: none;">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1">
+      </div>
+
+      <!-- Delivery Info -->
+      <h3>Delivery Details</h3>
+      <input type="text" placeholder="Full Name" required>
+      <input type="text" placeholder="Delivery Address" required>
+      <input type="text" placeholder="City" required>
+      <input type="tel" placeholder="Phone Number" required>
+
+      <!-- Payment -->
+      <h3>Payment</h3>
+      <select name="payment" id="payment">
+        <option value="cash">Cash on Delivery</option>
+        <option value="card">Credit/Debit Card</option>
+      </select>
+
+      <!-- Button -->
+      <button type="submit">Place Order</button>
+      <a href="main.html" class="back-home">← Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+  const params = new URLSearchParams(window.location.search);
+const item = decodeURIComponent(params.get("item")) || "Unknown Item";
+const type = params.get("type") || "drink";
+const price = parseFloat(params.get("price")) || 0;
+
+const selectedDrink = document.getElementById("selected-drink");
+const quantityInput = document.getElementById("quantity");
+const sizeSelect = document.getElementById("size");
+
+function getSizeModifier(size) {
+  if (size === "medium") return 0.5;
+  if (size === "large") return 1.0;
+  return 0;
+}
+
+function updatePrice() {
+  const qty = quantityInput ? parseInt(quantityInput.value) : 1;
+  const size = sizeSelect ? sizeSelect.value : "small";
+  const sizeModifier = type === "drink" ? getSizeModifier(size) : 0;
+  const total = ((price + sizeModifier) * qty).toFixed(2);
+
+  selectedDrink.textContent = `${item} - $${total}`;
+}
+
+// Show relevant options
+if (type === "drink") {
+  document.getElementById("drink-options").style.display = "block";
+  document.getElementById("milk-options").style.display = "block";
+} else if (type === "pastry") {
+  document.getElementById("pastry-options").style.display = "block";
+}
+
+updatePrice();
+
+if (quantityInput) {
+  quantityInput.addEventListener("input", updatePrice);
+}
+if (sizeSelect) {
+  sizeSelect.addEventListener("change", updatePrice);
+}
+
+
+  </script>
+</body>
+</html>

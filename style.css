@@ -1,0 +1,519 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.navbar{
+    background: #6F4E37;
+    margin:0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navbar_container{
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#navbar_logo{
+    background-color: #3d1f12;
+    background-image: linear-gradient(to right, #3C2F2F, #A67B5B, #E6BE8A);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.fa-gem{
+    margin-right: 0.5rem;
+}
+
+.navbar_menu{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+}
+
+.navbar_item{
+    height: 80px;
+}
+
+.navbar_links{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 0% 1rem;
+    height: 100%;
+}
+
+.navbar_btn{
+    display: text;
+    justify-content: center;
+    align-items: center;
+    padding: 0% 1rem;
+    width: 100%;
+}
+
+.button{
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 20px; 
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background-color: #654321;
+    color: white;
+}
+
+.button:hover {
+    background: #d4a373;
+    color: #3d1f12;
+    transition: all 0.3s ease;
+}
+
+.navbar_links:hover{
+    color: #5C4033;
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 960px) {
+    .navbar_menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        position: fixed;
+        right: -100%;   /* hide off-screen */
+        top: 0;
+        width: 60%;     /* sidebar width */
+        height: 100vh;  /* full height */
+        background-color: #A67B5B;
+        transition: right 0.5s ease;  /* slide effect */
+        z-index: 99;
+        padding-top: 100px;  /* push links down */
+    }
+
+    .navbar_menu.active {
+        right: 0; /* slide in */
+    }
+
+    .navbar_links {
+        text-align: center;
+        padding: 1.5rem;
+        width: 100%;
+        display: block;
+        font-size: 1.2rem;
+    }
+
+    #mobile-menu {
+        position: absolute;
+        top: 25px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .navbar_toggle .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
+        background: white;
+    }
+
+    #mobile-menu.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    #mobile-menu.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    #mobile-menu.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    /* Overlay (hidden by default) */
+}
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5); /* dim effect */
+    display: none;
+    z-index: 50;
+}
+
+/* Show overlay when active */
+#overlay.active {
+    display: block;
+}
+
+.hero {
+    height: 40vh;
+    width: 100%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+
+
+.hero::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(34, 24, 19, 0.6);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1{
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero p{
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.hero-btn {
+  background: #6f4e37; /* coffee brown */
+  padding: 12px 30px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.hero-btn:hover {
+  background: #3e2723;
+}
+
+/* Keyframe animation */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px); /* start lower */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* end at original position */
+  }
+}
+
+/* Apply to hero text */
+.hero h1, .hero p, .hero-btn {
+  opacity: 0; /* start invisible */
+  animation: fadeUp 1s ease forwards;
+}
+
+/* Different delays for a staggered effect */
+.hero h1 {
+  animation-delay: 0.3s;
+}
+.hero p {
+  animation-delay: 0.6s;
+}
+.hero-btn {
+  animation-delay: 0.9s;
+}
+.featured-menu h2, .featured-menu img, .featured-menu h3, .btn {
+  opacity: 0; /* start invisible */
+  animation: fadeUp 1s ease forwards;
+}
+
+.featured-menu h2 {
+  animation-delay: 0.3s;
+}
+
+.featured-menu img {
+  animation-delay: 0.3s;
+}
+
+.featured-menu h3 {
+  animation-delay: 0.3s;
+}
+
+.btn{
+    animation-delay: 0.3s;
+}
+
+section{
+    padding: 60px 20px;
+    text-align: center;
+}
+
+h2{
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #3d1f12;
+}
+
+/* Featured Menu Section */
+.featured-menu .menu-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+  width: 250px;
+  overflow: hidden; /* keeps image from overflowing */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05); /* slight zoom */
+  box-shadow: 0px 8px 20px rgba(111, 78, 55, 0.5); /* coffee glow */
+}
+
+.card img {
+  width: 100%;
+  border-radius: 12px;
+  transition: transform 0.4s ease; /* smooth zoom */
+}
+
+.card:hover img {
+  transform: scale(1.1); /* image zooms in */
+}
+
+.card h3 {
+  margin: 15px 0 5px;
+  font-size: 1.3rem;
+  color: #3d1f12;
+}
+
+.card p {
+  color: #5c4033;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Buttons inside cards */
+.card .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #6f4e37;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.card .btn:hover {
+  background: #3e2723;
+  transform: scale(1.05);
+}
+/* Featured Menu Section */
+.featured-menu {
+  padding: 40px 20px;
+  background: transparent;
+  text-align: center;
+  color: #fff;
+}
+
+.featured-menu h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.menu-cards {
+  display: flex;
+  gap: 60px;
+  flex-wrap: nowrap;         /* force one row */
+  overflow-x: auto;          /* enable horizontal scroll */
+  scroll-snap-type: x mandatory;
+  padding: 20px;
+  white-space: nowrap;
+  scrollbar-width: none;     /* hide scrollbar Firefox */
+}
+
+.menu-cards::-webkit-scrollbar {
+  display: none; /* hide scrollbar Chrome/Safari */
+}
+
+.card {
+  flex: 0 0 auto;   /* don't shrink, stay inline */
+}
+
+.card {
+  background: rgba(34, 24, 19, 0.85); /* semi-transparent dark bg */
+  border-radius: 15px;
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.5);
+  width: 280px;
+  height: 380px; /* same height for all */
+  display: flex;
+  flex-direction: column;
+  align-items: first baseline;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0px 10px 30px rgba(255, 193, 7, 0.5);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;   /* same image size */
+  object-fit: cover; /* keeps proportions, crops nicely */
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  margin: 10px 0 5px;
+  font-size: 1.3rem;
+  color: #f1e0d6;
+}
+
+.card p {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #d9a066;
+  margin-bottom: 15px;
+}
+
+.card .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #6f4e37;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.card .btn:hover {
+  background: #3e2723;
+  transform: scale(1.05);
+}
+
+.page-wrapper {
+    background: url("images/rainy%20coffee%20shop.jpeg") no-repeat center center/cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #fff;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  background: url("images/rainy%20coffee%20shop.jpeg") no-repeat center center/cover;
+  background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+}
+
+.featured-menu {
+  position: relative; /* so ::after stays inside */
+  z-index: 2;         /* keeps content above background */
+}
+
+/* Global transparent overlay for the WHOLE page */
+.why-choose::after {
+ content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(34, 24, 19, 0.6);
+     z-index: -1; 
+}
+
+.featured-menu::after {
+ content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(34, 24, 19, 0.6);
+     z-index: -1; 
+}
+
+/* Make sure page content sits ABOVE the overlay */
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+
+/*Horizontal Scrolling*/
+
+.featured-menu .menu-cards {
+  display: flex;
+  gap: 60px;
+  flex-wrap: nowrap;         /* force one row */
+  overflow-x: auto;          /* enable horizontal scroll */
+  scroll-snap-type: x mandatory;
+  padding: 20px;
+  white-space: nowrap;
+  scrollbar-width: none;     /* hide scrollbar Firefox */
+}
+
+.featured-menu .menu-cards::-webkit-scrollbar {
+  display: none; /* hide scrollbar Chrome/Safari */
+}
+
+.featured-menu .card {
+  flex: 0 0 auto;   /* don't shrink, stay inline */
+}
+
+

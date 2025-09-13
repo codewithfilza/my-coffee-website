@@ -1,0 +1,124 @@
+/* Background wrapper */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(rgba(34,24,19,0.9), rgba(34,24,19,0.9)),
+              url('coffee-bg.jpeg') center/cover no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-wrapper {
+    background: url("images/rainy%20coffee%20shop.jpeg") no-repeat center center/cover;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;  /* centers vertically */
+    color: #fff;
+}
+
+
+
+/* Card */
+.login-card {
+  background: #fffaf5;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Heading */
+.login-card h1 {
+  margin-bottom: 20px;
+  color: #3e2723;
+ 
+}
+
+/* Form inputs */
+.login-form input {
+  width: 92%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #444;
+}
+
+/* Button */
+.login-form .btn {
+  width: 100%;
+  padding: 12px;
+  background: #6f4e37;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-form .btn:hover {
+  background: #3e2723;
+}
+
+/* Login link */
+.login-text {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.login-text a {
+  color: #6f4e37;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login-text a:hover {
+  text-decoration: underline;
+}
+
+/* Back to Home */
+.back-home {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #6f4e37;
+  text-decoration: none;
+}
+
+.back-home:hover {
+  text-decoration: underline;
+}
+
+.login-box {
+  background: rgba(0, 0, 0, 0.7);  
+  backdrop-filter: blur(8px);      
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 0 20px 5px rgba(0, 255, 255, 0.7);
+   
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.15); /* very light + transparent */
+  backdrop-filter: blur(4px); /* needs transparency to work */
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: -6px -6px 20px rgba(139, 69, 19, 10);
+  text-align: center;
+   border: 10px solid (0, 0, 0, 1); /* semi-transparent white stroke */
+  
+}
+
